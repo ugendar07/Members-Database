@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Database</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 40px;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        /* Alert styles */
+        .alert {
+            padding: 12px 18px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+
+        .alert button.close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #856404;
+            cursor: pointer;
+        }
+
+        /* Member listing */
+        .member-card {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .member-card strong {
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        .member-card span {
+            display: block;
+            color: #555;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="container">
+        <h1>Database to Store Members</h1>
+
+        {% for items in all %}
+        <div class="member-card">
+            <strong>{{ items.fname }} {{ items.lname }}</strong>
+            <span>Email: {{ items.email }}</span>
+            <span>Age: {{ items.age }}</span>
+        </div>
+        {% empty %}
+        <p style="text-align:center; color:#999;">No members found.</p>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
